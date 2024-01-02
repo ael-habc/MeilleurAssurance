@@ -22,57 +22,56 @@ const message = document.getElementById("message");
 
 form.addEventListener("submit", (e) => {
   if (!validation()) {
-    console.log("not valide");
     e.preventDefault();
   } else {
-    console.log("valide");
     form.submit();
   }
 });
 
 const validation = () => {
-  //   nomError.innerHTML = "";
-  //   prenomError.innerHTML = "";
-  //   dateError.innerHTML = "";
-  //   codePostalError.innerHTML = "";
-  //   emailError.innerHTML = "";
-  //   telephoneError.innerHTML = "";
-
+  nom.style.border = "3px solid green";
+  prenom.style.border = "3px solid green";
+  email.style.border = "3px solid green";
+  telephone.style.border = "3px solid green";
+  date.style.border = "3px solid green";
+  codePostal.style.border = "3px solid green";
   if (
     nameValidation(nom.value) !== true ||
     prenomValidation(prenom.value) !== true ||
     emailValidation(email.value) !== true ||
     phoneValidation(telephone.value) !== true ||
     dateValidation(date.value) !== true ||
-    codePostalValidation(codePostal.value) !== true
+    codePostalValidation(codePostal.value) !== true ||
+    check.checked === false
+	
   ) {
     if (nameValidation(nom.value) !== true) {
       //   let error = nameValidation(nom.value);
-      nom.style.border = "1px solid red";
+      nom.style.border = "2px solid red";
       //   nomError.innerHTML = error;
     } else {
-      nom.style.border = "2px solid green";
+      nom.style.border = "3px solid green";
     }
     if (prenomValidation(prenom.value) !== true) {
       //   let error = prenomValidation(prenom.value);
       prenom.style.border = "2px solid red";
       //   prenomError.innerHTML = error;
     } else {
-      prenom.style.border = "2px solid green";
+      prenom.style.border = "3px solid green";
     }
     if (emailValidation(email.value) !== true) {
       //   let error = emailValidation(email.value);
       email.style.border = "2px solid red";
       //   emailError.innerHTML = error;
     } else {
-      email.style.border = "2px solid green";
+      email.style.border = "3px solid green";
     }
     if (phoneValidation(telephone.value) !== true) {
       //   let error = phoneValidation(telephone.value);
       telephone.style.border = "2px solid red";
       //   telephoneError.innerHTML = error;
     } else {
-      telephone.style.border = "2px solid green";
+      telephone.style.border = "3px solid green";
     }
 
     if (codePostalValidation(codePostal.value) !== true) {
@@ -80,7 +79,7 @@ const validation = () => {
       codePostal.style.border = "2px solid red";
       //   codePostalError.innerHTML = error;
     } else {
-      codePostal.style.border = "2px solid green";
+      codePostal.style.border = "3px solid green";
     }
 
     if (dateValidation(date.value) !== true) {
@@ -88,7 +87,7 @@ const validation = () => {
       date.style.border = "2px solid red";
       //   dateError.innerHTML = error;
     } else {
-      date.style.border = "2px solid green";
+      date.style.border = "3px solid green";
     }
     if (check.checked == false) {
       message.style.color = "red";
