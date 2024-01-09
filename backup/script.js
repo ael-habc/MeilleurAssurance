@@ -12,6 +12,17 @@ const telephone = document.getElementById("telephone");
 const check = document.getElementById("check");
 const message = document.getElementById("message");
 
+const button = document.getElementById("button");
+
+// myFunction();
+
+const disablebutton = () => {
+  button.classList.add("disabled");
+  button.disabled = true;
+  button.style.cursor = "not-allowed";
+};
+disablebutton();
+
 //the error message in french
 // const nomError = document.getElementById("nomError");
 // const prenomError = document.getElementById("prenomError");
@@ -22,10 +33,15 @@ const message = document.getElementById("message");
 
 form.addEventListener("submit", (e) => {
   if (!validation()) {
+    disablebutton();
     e.preventDefault();
   } else {
     form.submit();
   }
+});
+
+button.addEventListener("mouseover", () => {
+  if (!validation()) myFunction();
 });
 
 const validation = () => {
@@ -43,11 +59,11 @@ const validation = () => {
     dateValidation(date.value) !== true ||
     codePostalValidation(codePostal.value) !== true ||
     check.checked === false
-	
   ) {
     if (nameValidation(nom.value) !== true) {
       //   let error = nameValidation(nom.value);
       nom.style.border = "2px solid red";
+      disablebutton();
       //   nomError.innerHTML = error;
     } else {
       nom.style.border = "3px solid green";
@@ -55,6 +71,7 @@ const validation = () => {
     if (prenomValidation(prenom.value) !== true) {
       //   let error = prenomValidation(prenom.value);
       prenom.style.border = "2px solid red";
+      disablebutton();
       //   prenomError.innerHTML = error;
     } else {
       prenom.style.border = "3px solid green";
@@ -62,6 +79,7 @@ const validation = () => {
     if (emailValidation(email.value) !== true) {
       //   let error = emailValidation(email.value);
       email.style.border = "2px solid red";
+      disablebutton();
       //   emailError.innerHTML = error;
     } else {
       email.style.border = "3px solid green";
@@ -69,6 +87,7 @@ const validation = () => {
     if (phoneValidation(telephone.value) !== true) {
       //   let error = phoneValidation(telephone.value);
       telephone.style.border = "2px solid red";
+      disablebutton();
       //   telephoneError.innerHTML = error;
     } else {
       telephone.style.border = "3px solid green";
@@ -77,6 +96,7 @@ const validation = () => {
     if (codePostalValidation(codePostal.value) !== true) {
       //   let error = "La ville est obligatoire.";
       codePostal.style.border = "2px solid red";
+      disablebutton();
       //   codePostalError.innerHTML = error;
     } else {
       codePostal.style.border = "3px solid green";
@@ -85,18 +105,24 @@ const validation = () => {
     if (dateValidation(date.value) !== true) {
       //   let error = dateValidation(date.value);
       date.style.border = "2px solid red";
+      disablebutton();
       //   dateError.innerHTML = error;
     } else {
       date.style.border = "3px solid green";
     }
     if (check.checked == false) {
       message.style.color = "red";
+      disablebutton();
     } else {
       message.style.color = "white";
     }
   } else {
+    button.classList.remove("disabled");
+    button.disabled = false;
+    button.style.cursor = "pointer";
     return true;
   }
+  disablebutton();
   return false;
 };
 
@@ -223,3 +249,14 @@ const phoneChecker = (phone) => {
   ];
   return numbers.includes(phone.substring(1, 10)) ? true : false;
 };
+
+// snackbars
+function myFunction() {
+  var x = document.getElementById("snackbar");
+
+  x.className = "show";
+
+  setTimeout(function () {
+    x.className = x.className.replace("show", "");
+  }, 3000);
+}
